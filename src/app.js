@@ -7,9 +7,9 @@ const getWeather = require('./utils/weather');
 const hbs = require('hbs');
 const { send } = require('process');
 
-
-
 const app = express();
+const port = process.env.PORT || 3000;
+
 const viewsPath = path.join(__dirname,'../templates');
 const partialsPath = path.join(__dirname,'../templates/partials');
 //Setup Handlebars
@@ -39,7 +39,6 @@ app.get('/help', (req,res)=>{
     message: "Some text on the help page for all to see..."
   });
 })
-
 
 app.get('/weather', (req,res) => {  
   if(!req.query.address){
@@ -80,14 +79,12 @@ app.get('/products',(req,res)=>{
   
 });
 
-
 app.get('/help/*', (req,res) => {
   res.render('Error404', {
     title: "Help Article Not Found",
     name: "P00ko" 
   });
 });
-
 
 app.get('*', (req,res) =>{
   res.render('Error404', {
@@ -96,8 +93,7 @@ app.get('*', (req,res) =>{
   });
 })
 
-
-app.listen(3000,() => {
-  console.log('Server is up on port 3000.');
+app.listen(port,() => {
+  console.log('Server is up on port ' + port);
 });
 
