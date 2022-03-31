@@ -7,8 +7,7 @@ const getWeather = (coord, callback) => {
       callback('Error - Unable to connect to location services', undefined);
     } else if(body.length === 0){
       callback('Error - No return value from server', undefined);
-    } else{
-      console.log(body);
+    } else{      
       data = {
         "weather": body.weather[0].description,
         "temp": (body.main.temp - 273).toFixed(1),
