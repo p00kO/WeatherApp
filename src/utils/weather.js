@@ -8,14 +8,15 @@ const getWeather = (coord, callback) => {
     } else if(body.length === 0){
       callback('Error - No return value from server', undefined);
     } else{
+      console.log(body);
       data = {
         "weather": body.weather[0].description,
-        "temp": (body.main.temp - 273).toFixed(1)
+        "temp": (body.main.temp - 273).toFixed(1),
+        "minTemp": (body.main.temp_min - 273).toFixed(1),
+        "maxTemp": (body.main.temp_max - 273).toFixed(1)
       }
       callback(undefined,data);
     }
   });
 }
 module.exports = getWeather;
-
-// const forecast = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon +'&appid=301ff28ecfe730b2fb652b582c154e3c';

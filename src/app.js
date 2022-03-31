@@ -50,14 +50,16 @@ app.get('/weather', (req,res) => {
           error: error
         });
       } else{
-        getWeather(data, (error,{weather, temp}={})=> {
+        getWeather(data, (error,{weather, temp, minTemp, maxTemp}={})=> {
           if(error){
             res.send({error:error});
           }else{
             res.send({
               location: data.loc,
               weather: weather,
-              temp: temp
+              temp: temp,
+              minT: minTemp,
+              maxT: maxTemp
             });
           }
         });
